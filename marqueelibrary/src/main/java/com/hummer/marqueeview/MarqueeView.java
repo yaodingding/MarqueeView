@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class MarqueeView extends RecyclerView {
     private int mItemCount = 1;
     private OnClickListener mClickListener;
     private int mWidth;
+    private ItemDecoration mItemDecoration;
 
     public MarqueeView(@NonNull Context context) {
         super(context);
@@ -80,7 +82,8 @@ public class MarqueeView extends RecyclerView {
         this.mContext = context;
         mLinearLayoutManager = new LinearLayoutManager(mContext, HORIZONTAL, false);
         setLayoutManager(mLinearLayoutManager);
-        addItemDecoration(new ItemDecoration(350));
+        mItemDecoration = new ItemDecoration(0);
+        addItemDecoration(mItemDecoration);
         mAdapter = new RecyclerView.Adapter<ViewHolder>() {
 
             @NonNull
@@ -116,7 +119,12 @@ public class MarqueeView extends RecyclerView {
     }
 
     private void startMarquee() {
-        if (mWidth != 0 && mWidth < measureTextWidth(mText)) {
+        if (TextUtils.isEmpty(mText)) {
+            return;
+        }
+        float textWidth = measureTextWidth(mText);
+        if (mWidth != 0 && mWidth < textWidth) {
+            mItemDecoration.setSpace((int) (textWidth * 0.6f));
             startAnim();
             mItemCount = Integer.MAX_VALUE;
         } else {
@@ -130,6 +138,7 @@ public class MarqueeView extends RecyclerView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
+        startMarquee();
     }
 
     private void startAnim() {
@@ -151,6 +160,9 @@ public class MarqueeView extends RecyclerView {
     }
 
     private float measureTextWidth(CharSequence text) {
+        if (TextUtils.isEmpty(text)) {
+            return 0;
+        }
         TextPaint textPaint = new TextPaint();
         textPaint.setAntiAlias(true);
         textPaint.setTextSize(mTextSize);
@@ -203,9 +215,13 @@ public class MarqueeView extends RecyclerView {
 
     private class ItemDecoration extends RecyclerView.ItemDecoration {
 
-        private final int space;
+        private int space;
 
         public ItemDecoration(int space) {
+            this.space = space;
+        }
+
+        public void setSpace(int space) {
             this.space = space;
         }
 

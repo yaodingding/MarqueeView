@@ -9,11 +9,31 @@
     <com.hummer.marqueeview.MarqueeView
         android:id="@+id/marqueeview"
         android:layout_width="match_parent"
-        android:background="#00ff00"
+        android:background="#B0B4B0"
         app:marquee_textsize="23sp"
-        app:marquee_textcolor="#ff0000"
+        app:marquee_textcolor="#3F51B5"
+        app:marquee_speed="2.5dp"
+        android:layout_height="40dp" />
+
+    <com.hummer.marqueeview.MarqueeView
+        android:id="@+id/marqueeview2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:background="#B0B4B0"
+        app:marquee_textsize="23sp"
+        app:marquee_textcolor="#4CAF50"
         app:marquee_speed="3dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
+
+    <com.hummer.marqueeview.MarqueeView
+        android:id="@+id/marqueeview3"
+        android:layout_width="match_parent"
+        android:background="#B0B4B0"
+        android:layout_marginTop="30dp"
+        app:marquee_textsize="23sp"
+        app:marquee_textcolor="#3F51B5"
+        app:marquee_speed="5dp"
+        android:layout_height="40dp" />
 
 
 </LinearLayout>
