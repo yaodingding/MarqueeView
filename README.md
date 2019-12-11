@@ -3,11 +3,11 @@
 1、marquee_textsize 字体大小。
 2、marquee_textcolor字体颜色。
 3、marquee_speed执行速度。
-`<com.hummer.marqueeview.MarqueeView
+``` java <com.hummer.marqueeview.MarqueeView
          android:id="@+id/marqueeview"
          android:layout_width="match_parent"
          android:background="#00ff00"
          app:marquee_textsize="23sp"
          app:marquee_textcolor="#ff0000"
          app:marquee_speed="3dp"
-         android:layout_height="wrap_content" />`
+         android:layout_height="wrap_content" />```
