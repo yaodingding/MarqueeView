@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':marqueelibrary'
 rootProject.name='MarqueeView'
